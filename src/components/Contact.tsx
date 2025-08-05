@@ -9,16 +9,38 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simple form submission - let the form handle it naturally
+    // Get form data
     const form = e.target as HTMLFormElement;
-    form.submit();
+    const formData = new FormData(form);
     
-    // Reset form after submission
-    setTimeout(() => {
-      form.reset();
+    // Submit to Formspree via fetch to prevent page navigation
+    fetch('https://formspree.io/f/xpwlyjgp', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: formData.get('name'),
+        email: formData.get('email'),
+        subject: formData.get('subject'),
+        message: formData.get('message'),
+      }),
+    })
+    .then(response => {
+      if (response.ok) {
+        form.reset();
+        alert('Thank you! Your message has been sent successfully.');
+      } else {
+        throw new Error('Failed to send message');
+      }
+    })
+    .catch(error => {
+      console.error('Error sending message:', error);
+      alert('Sorry, there was an error sending your message. Please try again.');
+    })
+    .finally(() => {
       setIsSubmitting(false);
-      alert('Thank you! Your message has been sent successfully.');
-    }, 2000);
+    });
   };
 
   const contactInfo = [
@@ -43,8 +65,8 @@ const Contact = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { icon: Github, href: 'https://github.com/Surya-J-Dev', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/surya-j-developer', label: 'LinkedIn' },
     { icon: Instagram, href: '#', label: 'Instagram' }
   ];
 
@@ -81,7 +103,6 @@ const Contact = () => {
               <form 
                 onSubmit={handleSubmit} 
                 className="space-y-6"
-                action="https://formspree.io/f/xpwlyjgp"
                 method="POST"
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
