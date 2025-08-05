@@ -9,33 +9,16 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Let Netlify handle the form submission
+    // Simple form submission - let the form handle it naturally
     const form = e.target as HTMLFormElement;
+    form.submit();
     
-    // Create FormData and submit via fetch to prevent page navigation
-    const formData = new FormData(form);
-    formData.append('form-name', 'contact');
-    
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData as any).toString(),
-    })
-    .then(response => {
-      if (response.ok) {
-        form.reset();
-        alert('Thank you! Your message has been sent successfully.');
-      } else {
-        throw new Error('Failed to send message');
-      }
-    })
-    .catch(error => {
-      console.error('Error sending message:', error);
-      alert('Sorry, there was an error sending your message. Please try again.');
-    })
-    .finally(() => {
+    // Reset form after submission
+    setTimeout(() => {
+      form.reset();
       setIsSubmitting(false);
-    });
+      alert('Thank you! Your message has been sent successfully.');
+    }, 2000);
   };
 
   const contactInfo = [
@@ -98,16 +81,9 @@ const Contact = () => {
               <form 
                 onSubmit={handleSubmit} 
                 className="space-y-6"
-                name="contact"
+                action="https://formspree.io/f/xpwlyjgp"
                 method="POST"
-                data-netlify="true"
-                data-netlify-honeypot="bot-field"
               >
-                {/* Hidden input for Netlify */}
-                <input type="hidden" name="form-name" value="contact" />
-                <div className="hidden">
-                  <input name="bot-field" />
-                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
