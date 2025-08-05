@@ -137,7 +137,7 @@ const About = () => {
                         <span className="text-xs text-orange-400 bg-orange-400/10 px-2 py-0.5 rounded-full">Internship</span>
                       </div>
                       <p className="text-gray-400 text-xs mb-0.5">Inmakes Infotech</p>
-                      <p className="text-gray-500 text-xs">Duration: [Add your duration]</p>
+                      <p className="text-gray-500 text-xs">May 2025 - Aug 2025</p>
                       <div className="mt-2 flex flex-wrap gap-1">
                         <span className="px-1.5 py-0.5 bg-orange-500/20 text-orange-400 rounded-full text-xs">Java</span>
                         <span className="px-1.5 py-0.5 bg-blue-500/20 text-blue-400 rounded-full text-xs">SQL</span>
