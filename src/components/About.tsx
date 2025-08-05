@@ -61,7 +61,7 @@ const About = () => {
               <h3 className="text-2xl font-bold text-white mb-4">My Journey</h3>
               <p className="text-gray-300 mb-6">
                 Started as a curious developer exploring different technologies, I've evolved into 
-                a full stack developer specializing in React, Node.js, and modern web technologies. 
+                a full stack developer specializing in React, Java, Python, and modern web technologies. 
                 I'm constantly learning and adapting to new challenges in the ever-evolving tech landscape.
               </p>
               <div className="space-y-4">
