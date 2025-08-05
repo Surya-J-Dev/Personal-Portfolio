@@ -57,6 +57,25 @@ const Projects = () => {
     },
     {
       id: 3,
+      title: 'Dev2Design - Web Service Solutions',
+      category: 'Frontend',
+      description: 'A company offering web service solutions with modern design and professional presentation',
+      longDescription: 'Developed a comprehensive web service solutions website for Dev2Design company. The platform showcases professional web development services, digital solutions, and client portfolio with modern design aesthetics and responsive functionality.',
+      image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800',
+      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Responsive Design'],
+      github: '#',
+      demo: 'https://dev2design.netlify.app/',
+      features: [
+        'Professional service showcase',
+        'Modern and responsive design',
+        'Interactive service portfolio',
+        'Client testimonials section',
+        'Contact and inquiry forms',
+        'SEO optimized for business'
+      ]
+    },
+    {
+      id: 4,
       title: 'Task Management App',
       category: 'Frontend',
       description: 'A modern task management application with real-time updates',
@@ -75,7 +94,7 @@ const Projects = () => {
       ]
     },
     {
-      id: 4,
+      id: 5,
       title: 'Weather Dashboard',
       category: 'Frontend',
       description: 'A beautiful weather dashboard with location-based forecasts',
@@ -94,7 +113,7 @@ const Projects = () => {
       ]
     },
     {
-      id: 5,
+      id: 6,
       title: 'Social Media API',
       category: 'Backend',
       description: 'RESTful API for a social media application with authentication',
@@ -113,7 +132,7 @@ const Projects = () => {
       ]
     },
     {
-      id: 6,
+      id: 7,
       title: 'Portfolio Website',
       category: 'Frontend',
       description: 'A responsive portfolio website with modern animations',
@@ -129,25 +148,6 @@ const Projects = () => {
         'Contact form with validation',
         'SEO optimized',
         'Fast loading performance'
-      ]
-    },
-    {
-      id: 7,
-      title: 'Analytics Dashboard',
-      category: 'Full Stack',
-      description: 'A comprehensive analytics dashboard with real-time data visualization',
-      longDescription: 'Built a powerful analytics dashboard that provides real-time insights with interactive charts, data visualization, and reporting features. The application processes large datasets and presents them in an intuitive, user-friendly interface.',
-      image: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['React', 'D3.js', 'Python', 'PostgreSQL', 'Express'],
-      github: '#',
-      demo: '#',
-      features: [
-        'Real-time data visualization',
-        'Interactive charts and graphs',
-        'Custom reporting tools',
-        'Data export functionality',
-        'User role management',
-        'Automated report generation'
       ]
     }
   ];
