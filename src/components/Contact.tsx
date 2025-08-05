@@ -12,15 +12,30 @@ const Contact = () => {
     // Let Netlify handle the form submission
     const form = e.target as HTMLFormElement;
     
-    // Submit the form normally - Netlify will handle it
-    form.submit();
+    // Create FormData and submit via fetch to prevent page navigation
+    const formData = new FormData(form);
+    formData.append('form-name', 'contact');
     
-    // Reset form and show success message after a delay
-    setTimeout(() => {
-      form.reset();
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData as any).toString(),
+    })
+    .then(response => {
+      if (response.ok) {
+        form.reset();
+        alert('Thank you! Your message has been sent successfully.');
+      } else {
+        throw new Error('Failed to send message');
+      }
+    })
+    .catch(error => {
+      console.error('Error sending message:', error);
+      alert('Sorry, there was an error sending your message. Please try again.');
+    })
+    .finally(() => {
       setIsSubmitting(false);
-      alert('Thank you! Your message has been sent successfully.');
-    }, 1000);
+    });
   };
 
   const contactInfo = [
@@ -85,7 +100,6 @@ const Contact = () => {
                 className="space-y-6"
                 name="contact"
                 method="POST"
-                action="/"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
               >
