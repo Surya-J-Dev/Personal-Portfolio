@@ -50,7 +50,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/Personal-Portfolio.git
+   git clone https://github.com/Surya-J-Dev/Personal-Portfolio.git
    cd Personal-Portfolio
    ```
 
