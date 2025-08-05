@@ -5,36 +5,22 @@ import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram } from 'lucide-r
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    try {
-      const form = e.target as HTMLFormElement;
-      const formData = new FormData(form);
-      
-      // Add the form name for Netlify
-      formData.append('form-name', 'contact');
-      
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as any).toString(),
-      });
-      
-      if (response.ok) {
-        // Success - reset form
-        form.reset();
-        alert('Thank you! Your message has been sent successfully.');
-      } else {
-        throw new Error('Failed to send message');
-      }
-    } catch (error) {
-      console.error('Error sending message:', error);
-      alert('Sorry, there was an error sending your message. Please try again.');
-    } finally {
+    // Let Netlify handle the form submission
+    const form = e.target as HTMLFormElement;
+    
+    // Submit the form normally - Netlify will handle it
+    form.submit();
+    
+    // Reset form and show success message after a delay
+    setTimeout(() => {
+      form.reset();
       setIsSubmitting(false);
-    }
+      alert('Thank you! Your message has been sent successfully.');
+    }, 1000);
   };
 
   const contactInfo = [
@@ -99,6 +85,7 @@ const Contact = () => {
                 className="space-y-6"
                 name="contact"
                 method="POST"
+                action="/"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
               >
