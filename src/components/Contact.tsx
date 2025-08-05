@@ -16,12 +16,27 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const formData = new FormData(e.target as HTMLFormElement);
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as any).toString(),
+      });
+      
+      if (response.ok) {
+        // Success - reset form
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        alert('Thank you! Your message has been sent successfully.');
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('Sorry, there was an error sending your message. Please try again.');
+    } finally {
       setIsSubmitting(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      // In a real app, you would handle the form submission here
-    }, 2000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -88,7 +103,19 @@ const Contact = () => {
             <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 backdrop-blur-sm border border-gray-700">
               <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form 
+                onSubmit={handleSubmit} 
+                className="space-y-6"
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+              >
+                {/* Hidden input for Netlify */}
+                <input type="hidden" name="form-name" value="contact" />
+                <div className="hidden">
+                  <input name="bot-field" />
+                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
