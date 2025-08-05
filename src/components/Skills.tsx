@@ -28,11 +28,9 @@ const Skills = () => {
       title: 'Backend',
       icon: Server,
       skills: [
-        { name: 'Node.js', level: 88, icon: '🟢' },
         { name: 'Django', level: 85, icon: '🐘' },
         { name: 'Spring Boot', level: 83, icon: '🌱' },
         { name: 'FastAPI', level: 80, icon: '⚡' },
-        { name: 'Flask', level: 82, icon: '🍶' },
       ]
     },
     {

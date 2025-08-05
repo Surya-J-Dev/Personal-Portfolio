@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, X, Code, Zap, Smartphone } from 'lucide-react';
+import { ExternalLink, Github, X, Code, Zap, Smartphone, Clock, Rocket } from 'lucide-react';
 import FinTrackImage from '../assets/FinTrack.jpg';
 
 const Projects = () => {
@@ -76,78 +76,59 @@ const Projects = () => {
     },
     {
       id: 4,
-      title: 'Task Management App',
-      category: 'Frontend',
-      description: 'A modern task management application with real-time updates',
-      longDescription: 'Developed a responsive task management application with drag-and-drop functionality, real-time updates, and collaborative features. The app includes project boards, task assignments, deadline tracking, and team collaboration tools.',
-      image: 'https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['React', 'TypeScript', 'Firebase', 'Tailwind CSS', 'Framer Motion'],
+      title: 'Context-Aware Productivity AI',
+      category: 'Full Stack',
+      description: 'Notion + ChatGPT on Steroids - AI-driven workspace with smart insights and automation',
+      longDescription: 'Developed a sophisticated AI-powered workspace application that understands your notes, tasks, and ideas, providing intelligent insights and automation. The app features advanced AI capabilities including task prediction, meeting summarization, daily briefings, and smart calendar assistance.',
+      image: 'https://images.pexels.com/photos/3183153/pexels-photo-3183153.jpeg?auto=compress&cs=tinysrgb&w=800',
+      technologies: ['Next.js', 'Supabase', 'LangChain', 'OpenAI', 'TipTap Editor', 'TypeScript'],
       github: '#',
       demo: '#',
       features: [
-        'Drag-and-drop task management',
-        'Real-time collaboration',
-        'Project boards and timelines',
-        'Team member assignments',
-        'Deadline notifications',
-        'Progress tracking and analytics'
+        'AI-powered task prediction and automation',
+        'Intelligent meeting and note summarization',
+        'Smart daily briefings and insights',
+        'Advanced calendar assistant with AI',
+        'Context-aware workspace management',
+        'Real-time AI-driven workflow optimization'
       ]
     },
     {
       id: 5,
-      title: 'Weather Dashboard',
-      category: 'Frontend',
-      description: 'A beautiful weather dashboard with location-based forecasts',
-      longDescription: 'Created an interactive weather dashboard that provides detailed weather information, forecasts, and weather maps. The application features a clean, modern design with animated weather icons and responsive charts.',
-      image: 'https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['React', 'Chart.js', 'OpenWeather API', 'CSS3', 'JavaScript'],
+      title: 'DevTool: API Monitor & Uptime Dashboard',
+      category: 'Full Stack',
+      description: 'Comprehensive API monitoring system with real-time uptime tracking and alerts',
+      longDescription: 'Built a robust API monitoring and uptime dashboard that provides comprehensive tracking of API performance, response times, and status codes. Features real-time WebSocket updates, email/SMS alerts, authentication, rate-limiting, and containerized deployment.',
+      image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800',
+      technologies: ['React', 'Node.js', 'MongoDB', 'Redis', 'WebSocket', 'Docker', 'Nginx'],
       github: '#',
       demo: '#',
       features: [
-        'Current weather conditions',
-        '7-day weather forecast',
-        'Interactive weather maps',
-        'Location-based services',
-        'Weather alerts and notifications',
-        'Historical weather data'
+        'Real-time API monitoring and uptime tracking',
+        'WebSocket-powered live dashboard updates',
+        'Email and SMS alert integration',
+        'Authentication and rate-limiting',
+        'Containerized deployment with Docker',
+        'Performance analytics and reporting'
       ]
     },
     {
       id: 6,
-      title: 'Social Media API',
-      category: 'Backend',
-      description: 'RESTful API for a social media application with authentication',
-      longDescription: 'Developed a comprehensive RESTful API for a social media platform with user authentication, post management, real-time messaging, and social features. The API is built with Node.js and Express, using MongoDB for data storage.',
-      image: 'https://images.pexels.com/photos/267389/pexels-photo-267389.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Node.js', 'Express', 'MongoDB', 'JWT', 'Socket.io'],
-      github: '#',
-      demo: '#',
-      features: [
-        'User authentication with JWT',
-        'Post creation and management',
-        'Real-time messaging',
-        'Friend connections and following',
-        'Image upload and processing',
-        'API documentation with Swagger'
-      ]
-    },
-    {
-      id: 7,
-      title: 'Portfolio Website',
+      title: 'Personal Portfolio Website',
       category: 'Frontend',
-      description: 'A responsive portfolio website with modern animations',
-      longDescription: 'Designed and developed a modern portfolio website featuring smooth animations, responsive design, and optimized performance. The site showcases projects, skills, and experience with an engaging user interface.',
+      description: 'A modern, responsive portfolio showcasing my skills, projects, and professional journey',
+      longDescription: 'Designed and developed a modern portfolio website featuring smooth animations, responsive design, and optimized performance. The site showcases projects, skills, and experience with an engaging user interface and contact form integration.',
       image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['React', 'Tailwind CSS', 'Framer Motion', 'TypeScript'],
-      github: '#',
-      demo: '#',
+      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Formspree'],
+      github: 'https://github.com/Surya-J-Dev/Personal-Portfolio',
+      demo: 'https://suryadeveloper.netlify.app/',
       features: [
         'Responsive design for all devices',
-        'Smooth scroll animations',
-        'Interactive project showcase',
-        'Contact form with validation',
-        'SEO optimized',
-        'Fast loading performance'
+        'Smooth scroll animations and transitions',
+        'Interactive project showcase with modals',
+        'Contact form with Formspree integration',
+        'Beautiful popup notifications',
+        'SEO optimized and fast loading'
       ]
     }
   ];
@@ -244,6 +225,21 @@ const Projects = () => {
                     {getCategoryIcon(project.category)}
                     <span className="text-xs text-white font-medium">{project.category}</span>
                   </div>
+                  {project.github === '#' && project.demo === '#' && (
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center">
+                      <div className="text-center">
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                          className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-3"
+                        >
+                          <Rocket className="w-6 h-6 text-white" />
+                        </motion.div>
+                        <div className="text-white font-bold text-lg mb-1">Coming Soon</div>
+                        <div className="text-gray-300 text-sm">In Development</div>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 
                 <div className="p-6">
@@ -267,30 +263,44 @@ const Projects = () => {
                   </div>
                   
                   <div className="flex space-x-4">
-                    <motion.a
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center space-x-1 text-gray-400 hover:text-cyan-400 transition-colors"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <Github className="w-4 h-4" />
-                      <span className="text-sm">Code</span>
-                    </motion.a>
-                    <motion.a
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center space-x-1 text-gray-400 hover:text-cyan-400 transition-colors"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      <span className="text-sm">Demo</span>
-                    </motion.a>
+                    {project.github !== '#' ? (
+                      <motion.a
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center space-x-1 text-gray-400 hover:text-cyan-400 transition-colors"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Github className="w-4 h-4" />
+                        <span className="text-sm">Code</span>
+                      </motion.a>
+                    ) : (
+                      <div className="flex items-center space-x-1 text-gray-500">
+                        <Clock className="w-4 h-4" />
+                        <span className="text-sm">Coming Soon</span>
+                      </div>
+                    )}
+                    {project.demo !== '#' ? (
+                      <motion.a
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center space-x-1 text-gray-400 hover:text-cyan-400 transition-colors"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        <span className="text-sm">Demo</span>
+                      </motion.a>
+                    ) : (
+                      <div className="flex items-center space-x-1 text-gray-500">
+                        <Rocket className="w-4 h-4" />
+                        <span className="text-sm">In Development</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.div>
