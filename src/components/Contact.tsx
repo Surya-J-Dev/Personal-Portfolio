@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram, CheckCircle, XCircle, X } from 'lucide-react';
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
+  const [popupType, setPopupType] = useState<'success' | 'error'>('success');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,14 +32,18 @@ const Contact = () => {
     .then(response => {
       if (response.ok) {
         form.reset();
-        alert('Thank you! Your message has been sent successfully.');
+        setPopupMessage('Thank you! Your message has been sent successfully.');
+        setPopupType('success');
+        setShowPopup(true);
       } else {
         throw new Error('Failed to send message');
       }
     })
     .catch(error => {
       console.error('Error sending message:', error);
-      alert('Sorry, there was an error sending your message. Please try again.');
+      setPopupMessage('Sorry, there was an error sending your message. Please try again.');
+      setPopupType('error');
+      setShowPopup(true);
     })
     .finally(() => {
       setIsSubmitting(false);
@@ -269,6 +276,63 @@ const Contact = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Beautiful Popup Modal */}
+      <AnimatePresence>
+        {showPopup && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+            onClick={() => setShowPopup(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 max-w-md w-full border border-gray-700 shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center space-x-3">
+                  {popupType === 'success' ? (
+                    <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                      <CheckCircle className="w-6 h-6 text-white" />
+                    </div>
+                  ) : (
+                    <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
+                      <XCircle className="w-6 h-6 text-white" />
+                    </div>
+                  )}
+                  <h3 className="text-xl font-bold text-white">
+                    {popupType === 'success' ? 'Success!' : 'Error'}
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setShowPopup(false)}
+                  className="text-gray-400 hover:text-white transition-colors duration-200"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+              
+              <p className="text-gray-300 text-lg leading-relaxed">
+                {popupMessage}
+              </p>
+              
+              <div className="mt-6 flex justify-end">
+                <button
+                  onClick={() => setShowPopup(false)}
+                  className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-lg font-semibold hover:from-cyan-400 hover:to-purple-400 transition-all duration-300"
+                >
+                  {popupType === 'success' ? 'Great!' : 'Try Again'}
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
