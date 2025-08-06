@@ -63,7 +63,7 @@ const Projects = () => {
       longDescription: 'Developed a comprehensive web service solutions website for Dev2Design company. The platform showcases professional web development services, digital solutions, and client portfolio with modern design aesthetics and responsive functionality.',
       image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800',
       technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Responsive Design'],
-      github: '#',
+      github: '',
       demo: 'https://dev2design.netlify.app/',
       features: [
         'Professional service showcase',
