@@ -2,9 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Code, Zap, Users, Target } from 'lucide-react';
 
-// Import company logos (you'll need to add these files to src/assets/)
-// import companyLogo1 from '../assets/company-logo-1.png';
-// import inmakesLogo from '../assets/inmakes-logo.png';
+// Import company logos
+import episycheLogo from '../assets/episyche_logo.jpeg';
+import inmakesLogo from '../assets/inmakesofficial_logo.jpeg';
 
 const About = () => {
   const features = [
@@ -73,7 +73,7 @@ const About = () => {
                     <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-md flex items-center justify-center flex-shrink-0 overflow-hidden">
                       {/* Replace with your company logo */}
                       <img 
-                        src="/src/assets/episyche_logo.jpeg" 
+                        src={episycheLogo} 
                         alt="Episyche Technologies Logo" 
                         className="w-full h-full object-cover"
                         onError={(e) => {
@@ -114,7 +114,7 @@ const About = () => {
                     <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-red-500 rounded-md flex items-center justify-center flex-shrink-0 overflow-hidden">
                       {/* Replace with Inmakes Infotech logo */}
                       <img 
-                        src="/src/assets/inmakesofficial_logo.jpeg" 
+                        src={inmakesLogo} 
                         alt="Inmakes Infotech Logo" 
                         className="w-full h-full object-cover"
                         onError={(e) => {
@@ -134,7 +134,7 @@ const About = () => {
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-1">
                         <h5 className="text-white font-semibold text-sm">Java Developer Trainee</h5>
-                        <span className="text-xs text-orange-400 bg-orange-400/10 px-2 py-0.5 rounded-full">Internship</span>
+                        <span className="text-xs text-orange-400 bg-orange-400/10 px-2 py-0.5 rounded-full">Ongoing</span>
                       </div>
                       <p className="text-gray-400 text-xs mb-0.5">Inmakes Infotech</p>
                       <p className="text-gray-500 text-xs">May 2025 - Aug 2025</p>

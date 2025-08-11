@@ -13,7 +13,7 @@ const Footer = () => {
     <footer className="bg-gray-900 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Brand */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -25,7 +25,7 @@ const Footer = () => {
                 <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg flex items-center justify-center">
                   <Code className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-xl font-bold text-white">DevPortfolio</span>
+                <span className="text-xl font-bold text-white">Surya</span>
               </div>
               <p className="text-gray-400 text-sm">
                 Crafting digital experiences with passion and precision. 
@@ -54,33 +54,6 @@ const Footer = () => {
                 ))}
               </div>
             </motion.div>
-
-            {/* Newsletter */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <h4 className="text-lg font-semibold text-white mb-4">Stay Updated</h4>
-              <p className="text-gray-400 text-sm mb-4">
-                Get notified about new projects and blog posts.
-              </p>
-              <div className="flex">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 bg-gray-800 border border-gray-600 rounded-l-lg text-white placeholder-gray-400 focus:border-cyan-500 focus:outline-none text-sm"
-                />
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-r-lg hover:from-cyan-400 hover:to-purple-400 transition-all duration-300"
-                >
-                  Subscribe
-                </motion.button>
-              </div>
-            </motion.div>
           </div>
         </div>
 
@@ -94,7 +67,7 @@ const Footer = () => {
               viewport={{ once: true }}
               className="flex items-center space-x-2 text-gray-400 text-sm"
             >
-              <span>© {currentYear} DevPortfolio. Made with</span>
+              <span>© {currentYear} Surya. Made with</span>
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 1, repeat: Infinity }}

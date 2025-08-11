@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, X, Code, Zap, Smartphone, Clock, Rocket } from 'lucide-react';
+import { ExternalLink, Github, X, Code, Zap, Smartphone, Clock, Rocket, Coffee, Wrench, Sparkles } from 'lucide-react';
 import FinTrackImage from '../assets/FinTrack.jpg';
 
 const Projects = () => {
@@ -153,6 +153,141 @@ const Projects = () => {
     }
   };
 
+  const EmptyState = ({ category }: { category: string }) => (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="col-span-full flex flex-col items-center justify-center py-20"
+    >
+      <div className="text-center max-w-md mx-auto">
+        {/* Animated Icons */}
+        <div className="relative mb-8">
+          <motion.div
+            animate={{ 
+              rotate: [0, 360],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ 
+              duration: 4, 
+              repeat: Infinity, 
+              ease: "linear" 
+            }}
+            className="w-24 h-24 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
+            <Wrench className="w-12 h-12 text-white" />
+          </motion.div>
+          
+          {/* Floating Sparkles */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              animate={{
+                y: [-10, 10, -10],
+                x: [-5, 5, -5],
+                opacity: [0.3, 1, 0.3],
+                scale: [0.8, 1.2, 0.8]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: i * 0.2,
+                ease: "easeInOut"
+              }}
+              className="absolute"
+              style={{
+                top: `${20 + i * 15}%`,
+                left: `${10 + i * 15}%`,
+              }}
+            >
+              <Sparkles className="w-4 h-4 text-cyan-400" />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Main Message */}
+        <motion.h3
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="text-2xl font-bold text-white mb-4"
+        >
+          {category} Projects Coming Soon!
+        </motion.h3>
+
+        <motion.p
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="text-gray-400 mb-6 leading-relaxed"
+        >
+          I'm currently brewing some amazing {category.toLowerCase()} projects with lots of ☕ and 💻. 
+          Stay tuned for some mind-blowing applications!
+        </motion.p>
+
+        {/* Animated Progress Bar */}
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: "100%" }}
+          transition={{ duration: 2, delay: 0.6 }}
+          className="w-full bg-gray-700 rounded-full h-2 mb-6"
+        >
+          <motion.div
+            animate={{ width: ["0%", "75%"] }}
+            transition={{ 
+              duration: 2, 
+              delay: 0.8,
+              ease: "easeInOut"
+            }}
+            className="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full relative"
+          >
+            <motion.div
+              animate={{ 
+                scale: [1, 1.2, 1],
+                opacity: [0.5, 1, 0.5]
+              }}
+              transition={{ 
+                duration: 1.5, 
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="absolute right-0 top-0 w-3 h-3 bg-white rounded-full shadow-lg"
+            />
+          </motion.div>
+        </motion.div>
+
+        {/* Fun Stats */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="flex justify-center space-x-6 text-sm"
+        >
+          <div className="flex items-center space-x-2 text-gray-400">
+            <Coffee className="w-4 h-4" />
+            <span>Coffee consumed: ∞</span>
+          </div>
+          <div className="flex items-center space-x-2 text-gray-400">
+            <Code className="w-4 h-4" />
+            <span>Bugs fixed: 42</span>
+          </div>
+        </motion.div>
+
+        {/* Call to Action */}
+        <motion.button
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setActiveCategory('All')}
+          className="mt-6 px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-full font-semibold hover:from-cyan-400 hover:to-purple-400 transition-all duration-300"
+        >
+          View All Projects
+        </motion.button>
+      </div>
+    </motion.div>
+  );
+
   return (
     <section id="projects" className="py-20 bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -203,108 +338,112 @@ const Projects = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <AnimatePresence>
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl overflow-hidden border border-gray-700 hover:border-cyan-500/50 transition-all duration-300 cursor-pointer"
-                onClick={() => setSelectedProject(project.id)}
-              >
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
-                  />
-                  <div className="absolute top-4 right-4 flex items-center space-x-1 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1">
-                    {getCategoryIcon(project.category)}
-                    <span className="text-xs text-white font-medium">{project.category}</span>
-                  </div>
-                  {project.github === '#' && project.demo === '#' && (
-                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center">
-                      <div className="text-center">
-                        <motion.div
-                          animate={{ rotate: 360 }}
-                          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                          className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-3"
-                        >
-                          <Rocket className="w-6 h-6 text-white" />
-                        </motion.div>
-                        <div className="text-white font-bold text-lg mb-1">Coming Soon</div>
-                        <div className="text-gray-300 text-sm">In Development</div>
-                      </div>
+            {filteredProjects.length === 0 ? (
+              <EmptyState category={activeCategory} />
+            ) : (
+              filteredProjects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -10 }}
+                  className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl overflow-hidden border border-gray-700 hover:border-cyan-500/50 transition-all duration-300 cursor-pointer"
+                  onClick={() => setSelectedProject(project.id)}
+                >
+                  <div className="relative overflow-hidden">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
+                    />
+                    <div className="absolute top-4 right-4 flex items-center space-x-1 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1">
+                      {getCategoryIcon(project.category)}
+                      <span className="text-xs text-white font-medium">{project.category}</span>
                     </div>
-                  )}
-                </div>
-                
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                  <p className="text-gray-400 mb-4 text-sm">{project.description}</p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.slice(0, 3).map((tech) => (
-                      <span 
-                        key={tech}
-                        className="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded-full text-xs"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.technologies.length > 3 && (
-                      <span className="px-2 py-1 bg-gray-700 text-gray-300 rounded-full text-xs">
-                        +{project.technologies.length - 3}
-                      </span>
-                    )}
-                  </div>
-                  
-                  <div className="flex space-x-4">
-                    {project.github !== '#' ? (
-                      <motion.a
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center space-x-1 text-gray-400 hover:text-cyan-400 transition-colors"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <Github className="w-4 h-4" />
-                        <span className="text-sm">Code</span>
-                      </motion.a>
-                    ) : (
-                      <div className="flex items-center space-x-1 text-gray-500">
-                        <Clock className="w-4 h-4" />
-                        <span className="text-sm">Coming Soon</span>
-                      </div>
-                    )}
-                    {project.demo !== '#' ? (
-                      <motion.a
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center space-x-1 text-gray-400 hover:text-cyan-400 transition-colors"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        <span className="text-sm">Demo</span>
-                      </motion.a>
-                    ) : (
-                      <div className="flex items-center space-x-1 text-gray-500">
-                        <Rocket className="w-4 h-4" />
-                        <span className="text-sm">In Development</span>
+                    {project.github === '#' && project.demo === '#' && (
+                      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center">
+                        <div className="text-center">
+                          <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                            className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-3"
+                          >
+                            <Rocket className="w-6 h-6 text-white" />
+                          </motion.div>
+                          <div className="text-white font-bold text-lg mb-1">Coming Soon</div>
+                          <div className="text-gray-300 text-sm">In Development</div>
+                        </div>
                       </div>
                     )}
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                  
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+                    <p className="text-gray-400 mb-4 text-sm">{project.description}</p>
+                    
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies.slice(0, 3).map((tech) => (
+                        <span 
+                          key={tech}
+                          className="px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded-full text-xs"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.technologies.length > 3 && (
+                        <span className="px-2 py-1 bg-gray-700 text-gray-300 rounded-full text-xs">
+                          +{project.technologies.length - 3}
+                        </span>
+                      )}
+                    </div>
+                    
+                    <div className="flex space-x-4">
+                      {project.github !== '#' ? (
+                        <motion.a
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center space-x-1 text-gray-400 hover:text-cyan-400 transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Github className="w-4 h-4" />
+                          <span className="text-sm">Code</span>
+                        </motion.a>
+                      ) : (
+                        <div className="flex items-center space-x-1 text-gray-500">
+                          <Clock className="w-4 h-4" />
+                          <span className="text-sm">Coming Soon</span>
+                        </div>
+                      )}
+                      {project.demo !== '#' ? (
+                        <motion.a
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center space-x-1 text-gray-400 hover:text-cyan-400 transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          <span className="text-sm">Demo</span>
+                        </motion.a>
+                      ) : (
+                        <div className="flex items-center space-x-1 text-gray-500">
+                          <Rocket className="w-4 h-4" />
+                          <span className="text-sm">In Development</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))
+            )}
           </AnimatePresence>
         </motion.div>
 

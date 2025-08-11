@@ -320,9 +320,9 @@ const Hero = () => {
           className="flex justify-center space-x-6"
         >
           {[
-            { Icon: Github, href: '#', label: 'GitHub', color: 'hover:text-gray-300' },
-            { Icon: Linkedin, href: '#', label: 'LinkedIn', color: 'hover:text-blue-400' },
-            { Icon: Mail, href: '#contact', label: 'Email', color: 'hover:text-cyan-400' },
+            { Icon: Github, href: 'https://github.com/Surya-J-Dev', label: 'GitHub', color: 'hover:text-gray-300' },
+            { Icon: Linkedin, href: 'https://www.linkedin.com/in/surya-j-developer', label: 'LinkedIn', color: 'hover:text-blue-400' },
+            { Icon: Mail, href: 'mailto:surya2003j@gmail.com', label: 'Email', color: 'hover:text-cyan-400' },
           ].map(({ Icon, href, label, color }, index) => (
             <motion.a
               key={label}
@@ -341,6 +341,8 @@ const Hero = () => {
               }}
               whileTap={{ scale: 0.9 }}
               href={href}
+              target={label === 'Email' ? '_self' : '_blank'}
+              rel={label === 'Email' ? '' : 'noopener noreferrer'}
               className={`w-14 h-14 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-300 ${color} transition-all duration-300 border border-white/20 hover:border-cyan-400/50 hover:shadow-lg hover:shadow-cyan-400/20`}
               aria-label={label}
             >

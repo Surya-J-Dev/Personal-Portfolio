@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram, CheckCircle, XCircle, X } from 'lucide-react';
+import { Mail, MapPin, Send, Github, Linkedin, Instagram, CheckCircle, XCircle, X } from 'lucide-react';
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -56,12 +56,6 @@ const Contact = () => {
       title: 'Email',
       value: 'surya2003j@gmail.com',
       link: 'mailto:surya2003j@gmail.com'
-    },
-    {
-      icon: Phone,
-      title: 'Phone',
-      value: '+91 9600618481',
-      link: 'tel:+91 9600618481'
     },
     {
       icon: MapPin,
